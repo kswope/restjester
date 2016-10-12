@@ -15,7 +15,10 @@
 * Easy to setup API backend for frontend development - load up restjester with data and go to work.
 
 
-### Compilied binaries for your platform.
+### Install
+
+Download the server compiled for your architecture
+
 [Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 |
 [OSX](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
@@ -26,23 +29,31 @@
 |
 [ARM](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
 
-### If you want to compile your own binary 
-
-Install [golang](https://golang.org/), download this repo, type make - the binary will be in server/bin/restjester
 
 
-### ruby example using rest-client and rspec
-
+Run with output to terminal
 ```
 shell> ./restjester
 Starting server at port 5351
 ```
 
+Run as a daemon (requires deamon)
+```
+shell> deamon --name restjester ./restjester
+```
+
+### If you want to compile your own binary 
+
+Install [golang](https://golang.org/), download this repo, type make - the binary will be in server/bin/
+
+
+### ruby example using rest-client and rspec
+
 ```
 it "can install and GET resource" do
 
   # install resource on restjester
-  RestClient.put 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
+  RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
 
   # GET resource
   response = RestClient.get 'localhost:5351/users/1' 
@@ -56,11 +67,20 @@ Delete root will clear all endpoints
 
 ### Installing endpoint ruby examples
 ```
-RestClient.put 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
-RestClient.put 'localhost:5351', { method:'PUT', path:'/users/1', data: {username: 'kswope'}.to_json }
-RestClient.put 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
+RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
+RestClient.post 'localhost:5351', { method:'PUT', path:'/users/1', data: {username: 'kswope'}.to_json }
+RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
 ```
 
+### Viewing all endpoints ruby example
+```
+RestClient.get 'localhost:5351'
+```
+
+### Clearing all installed endpoints ruby example
+```
+RestClient.delete 'localhost:5351'
+```
 
 ### Install endpoint parameters
 * path ( required )
@@ -81,9 +101,6 @@ TODO LATER
 
 ### INSTALL:
 
-restjester is currently distributed as a single compile golang binary.  No external dependancies.
-
-Find the server compiled for your architecture and put on your path, like /usr/sbin
 Not sure of platform?  
 > uname --hardware-platform
 
