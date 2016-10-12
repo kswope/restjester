@@ -15,7 +15,7 @@
 * Easy to setup API backend for frontend development - load up restjester with data and go to work.
 
 
-* [Windows](https://github.com/kswope/restjester/blob/master/releases/windows/amd64/restjester?raw=true)
+* [Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 * [OSX](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
 * [Linux](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
 * [ARM64](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
