@@ -15,11 +15,16 @@
 * Easy to setup API backend for frontend development - load up restjester with data and go to work.
 
 
-* Windows https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true
-* [OSX](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
-* [Linux](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
-* [ARM64](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
-* [ARM](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+### Compilied binaries for your platform.
+[Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
+[OSX](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[Linux](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[ARM64](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[ARM](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+
+### If you want to compile your own binary 
+
+Install [golang](https://golang.org/), download this repo, type make - the binary will be in server/bin/restjester
 
 
 ### ruby example using rest-client and rspec
