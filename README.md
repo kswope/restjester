@@ -61,7 +61,6 @@ RestClient.put 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 
 TODO
 ```
 
-
 ### perl example
 ```
 TODO
