@@ -17,9 +17,13 @@
 
 ### Compilied binaries for your platform.
 [Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
+|
 [OSX](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+|
 [Linux](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+|
 [ARM64](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+|
 [ARM](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
 
 ### If you want to compile your own binary 
