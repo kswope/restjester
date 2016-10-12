@@ -12,7 +12,6 @@
 * Same solution for all languages.
 * Because you have to use an external API if you are testing in a browser.
 * Can run as system service or command line.
-* Trivial to setup API backend for frontend development - load up restjester with data and go to work.
 
 
 ### Install
