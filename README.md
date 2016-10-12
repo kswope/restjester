@@ -61,9 +61,6 @@ it "can install and GET resource" do
 end
 ```
 
-Get root will view all endpoints
-Delete root will clear all endpoints
-
 ### Installing endpoint ruby examples
 ```
 RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
