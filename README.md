@@ -81,7 +81,7 @@ RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403
 RestClient.get 'localhost:5351'
 ```
 
-### Smart about query strings
+### Query string parameter order doesn't matter
 ```
 RestClient.post 'localhost:5351', { method:'GET' path:'/users/1?a=1&b=2', data: {username: 'kswope'}.to_json }
 
