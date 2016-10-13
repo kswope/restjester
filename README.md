@@ -80,7 +80,9 @@ RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403
 RestClient.get 'localhost:5351'
 ```
 
-Or just to go [localhost:5351](http://localhost:5351)
+### Viewing all endpoints in browser
+
+Just to go [localhost:5351](http://localhost:5351)
 Tip: install a JSON viewer plugin like [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
 
 ### Clearing all installed endpoints ruby example
