@@ -41,7 +41,7 @@ Run as a daemon (requires deamon)
 shell> deamon --name restjester ./restjester
 ```
 
-### If you want to compile your own binary 
+### If you want/need to compile your own binary 
 
 Install [golang](https://golang.org/), download this repo, type make - the binary will be in server/bin/
 
