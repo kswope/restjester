@@ -81,9 +81,7 @@ RestClient.get 'localhost:5351'
 ```
 
 Or just to go [localhost:5351](http://localhost:5351)
-
-[I'm an inline-style link](https://www.google.com)
-
+Tip: install a JSON viewer plugin like [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
 
 ### Clearing all installed endpoints ruby example
 ```
