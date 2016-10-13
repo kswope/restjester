@@ -75,7 +75,7 @@ RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403
 * status ( optional, default is 200 )
 * data ( optional, string (probably json), body of response, default is "" )
 
-### Viewing all endpoints ruby example
+### GET all endpoints ruby example
 ```
 RestClient.get 'localhost:5351'
 ```
