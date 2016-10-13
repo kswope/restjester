@@ -86,6 +86,7 @@ RestClient.get 'localhost:5351'
 RestClient.post 'localhost:5351', { method:'GET' path:'/users/1?a=1&b=2', data: {username: 'kswope'}.to_json }
 
 response = RestClient.get 'localhost:5351/users/1?a=1&b=2' 
+
 # same as
 response = RestClient.get 'localhost:5351/users/1?b=2&a=1' 
 ```
