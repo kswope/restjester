@@ -69,6 +69,12 @@ RestClient.post 'localhost:5351', { method:'POST',   path:'/users/1', status:200
 RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
 ```
 
+### Install endpoint parameters
+* path ( required )
+* method ( optional, default is GET )
+* status ( optional, default is 200 )
+* data ( optional, string (probably json), body of response, default is "" )
+
 ### Viewing all endpoints ruby example
 ```
 RestClient.get 'localhost:5351'
@@ -78,13 +84,6 @@ RestClient.get 'localhost:5351'
 ```
 RestClient.delete 'localhost:5351'
 ```
-
-### Install endpoint parameters
-* path ( required )
-* method ( optional, default is GET )
-* status ( optional, default is 200 )
-* data ( optional, string (probably json), body of response, default is "" )
-
 
 ### javascript example
 ```
