@@ -65,6 +65,7 @@ end
 ```
 RestClient.post 'localhost:5351', { method:'GET'     path:'/users/1', data: {username: 'kswope'}.to_json }
 RestClient.post 'localhost:5351', { method:'PUT',    path:'/users/1', status:200 }
+RestClient.post 'localhost:5351', { method:'POST',   path:'/users/1', status:200 }
 RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
 ```
 
