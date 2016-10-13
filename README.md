@@ -79,7 +79,7 @@ RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403
 ```
 RestClient.get 'localhost:5351'
 ```
-Or just to go [http://localhost:5351]http://localhost:5351
+Or just to go (http://localhost:5351)
 
 ### Clearing all installed endpoints ruby example
 ```
