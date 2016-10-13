@@ -75,10 +75,21 @@ RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403
 * status ( optional, default is 200 )
 * data ( optional, string (probably json), body of response, default is "" )
 
+
 ### GET all endpoints ruby example
 ```
 RestClient.get 'localhost:5351'
 ```
+
+### Smart about query strings
+```
+RestClient.post 'localhost:5351', { method:'GET' path:'/users/1?a=1&b=2', data: {username: 'kswope'}.to_json }
+
+response = RestClient.get 'localhost:5351/users/1?a=1&b=2' 
+# same as
+response = RestClient.get 'localhost:5351/users/1?b=2&a=1' 
+```
+
 
 ### Viewing all endpoints in browser
 
