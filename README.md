@@ -63,8 +63,8 @@ end
 
 ### Installing endpoint ruby examples
 ```
-RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
-RestClient.post 'localhost:5351', { method:'PUT', path:'/users/1', data: {username: 'kswope'}.to_json }
+RestClient.post 'localhost:5351', { method:'GET' path:'/users/1', data: {username: 'kswope'}.to_json }
+RestClient.post 'localhost:5351', { method:'PUT', path:'/users/1', status:200 }
 RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
 ```
 
@@ -82,7 +82,7 @@ RestClient.delete 'localhost:5351'
 * path ( required )
 * method ( optional, default is GET )
 * status ( optional, default is 200 )
-* data ( optional, body of response )
+* data ( optional, string (probably json), body of response, default is "" )
 
 
 ### javascript example
