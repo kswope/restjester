@@ -113,17 +113,3 @@ TODO
 TODO LATER
 ```
 
-### INSTALL:
-
-Not sure of platform?  
-> uname --hardware-platform
-
-Run with output to terminal
-> ./restjester
-
-Run as a daemon (requires deamon)
-> deamon --name restjester /usr/sbin/restjester
-
-Run on system startup, copy init script to appropriate place
-
-
