@@ -43,7 +43,7 @@ shell> deamon --name restjester ./restjester
 
 ### If you want/need to compile your own binary 
 
-Install [golang](https://golang.org/), download this repo, type make, the binary will be in server/bin/
+Install [golang](https://golang.org/), download this repo, type 'make', the binary will be in server/bin/
 
 
 ### ruby example using rest-client and rspec
