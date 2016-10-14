@@ -32,14 +32,15 @@ Download the server compiled for your architecture
 [Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 
 
+### Run
 
-Run with output to terminal
+With output to terminal
 ```
 shell> ./restjester
 Starting server at port 5351
 ```
 
-Run as a daemon (requires deamon)
+As a daemon (requires deamon)
 ```
 shell> deamon --name restjester ./restjester
 ```
