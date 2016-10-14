@@ -64,7 +64,7 @@ it "can install and GET resource" do
 end
 ```
 
-### Functionality
+### Complete Functionality
 
 * POST values to / to install endpoints
 
