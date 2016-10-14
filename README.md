@@ -31,6 +31,12 @@ Download the server compiled for your architecture
 [Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 
 
+### If you want/need to compile your own binary 
+
+Install [golang](https://golang.org/), download this repo, run 'make', the binary will be in server/bin/
+
+
+
 ### Run
 
 With output to terminal
@@ -45,10 +51,6 @@ shell> deamon --name restjester ./restjester
 ```
 
 
-
-### If you want/need to compile your own binary 
-
-Install [golang](https://golang.org/), download this repo, run 'make', the binary will be in server/bin/
 
 
 
