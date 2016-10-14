@@ -34,7 +34,7 @@ xcompile:
 
 	# OSX 64
 	mkdir -p releases/OSX/amd64
-	GOPATH=${GOPATH} GOOS=darwin GOARCH=amd64 go build -o releases/OSX/amd64/restjester ${GOPACKAGE}  
+	GOPATH=${GOPATH} GOOS=darwin GOARCH=amd64 go build -o releases/darwin/amd64/restjester ${GOPACKAGE}  
 
 	# linux 64
 	mkdir -p releases/linux/amd64

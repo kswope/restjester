@@ -10,12 +10,6 @@ require 'securerandom'
 HOST = 'localhost:5351'
 
 
-def get_helper(path = '/')
-  response = RestClient.get HOST + path
-  expect(response.code).to eql 200
-  response
-end
-
 def endpoint_installer(data)
   response = RestClient.post HOST, data
   expect(response.code).to eql 200
@@ -23,47 +17,58 @@ def endpoint_installer(data)
 end
 
 
+def get_helper(path)
+  response = RestClient.get HOST + path
+  expect(response.code).to eql 200
+  response
+end
+
+def random_path
+  '/' + SecureRandom.uuid
+end
+
+
 RSpec.describe 'restjester' do
-
-  let(:path) { '/findme' }
-  let(:host){ 'localhost:5351' }
-  let(:data1){ {a:1, b:2, c:3}.to_json }
-  let(:data2){ {a:4, b:5, c:6}.to_json }
-
 
   it "can install a GET endpoint and GET it" do
 
-    resource = '/myresource/' + SecureRandom.uuid
+    resource = random_path
+    data = {a:1, b:2}.to_json
 
-    # install endpoint
-    endpoint_installer(path:resource, data:data1)
+    endpoint_installer(path:resource, data:data)
+    expect(get_helper(resource)).to eql data
 
-    # get endpoint
-    response = get_helper(resource)
-    expect(response).to eql data1
+  end
+
+
+  it "can install a GET endpoint with query params and GET it" do
+
+    resource = random_path + '?a=1&c=2'
+    data = {y:1, z:2}.to_json
+
+    endpoint_installer(path:resource, data:data)
+    expect(get_helper(resource)).to eql data
 
   end
 
 
   it "can install a POST endpoint and POST to it" do
 
-    endpoint = '/myendpoint/' + SecureRandom.uuid
+    endpoint = random_path
 
-    # install endpoint
-    response = RestClient.post host, { path: endpoint, method: 'POST' }
+    # install POST endpoint
     response = endpoint_installer(path: endpoint, method: 'POST')
-    expect(response.code).to eql 200
 
-    # post to endpoint
-    response = RestClient.post host + endpoint, {bogus:'data'}
+    # successfully post to endpoint
+    response = RestClient.post HOST + endpoint, {}
     expect(response.code).to eql 200
 
   end
 
   it "can GET all endpoints" do
 
-    resource1 = '/myresource/' + SecureRandom.uuid
-    resource2 = '/myresource/' + SecureRandom.uuid
+    resource1 = random_path
+    resource2 = random_path
     data1 = {a:1, b:2}.to_json
     data2 = {c:3, d:4}.to_json
 
@@ -71,9 +76,9 @@ RSpec.describe 'restjester' do
     endpoint_installer(path:resource2, data:data2)
 
     # dump endpoint
-    response = get_helper()
+    response = get_helper('/')
 
-    # check if endpoint is there somewhere, not the most conclusive test
+    # check if endpoints are there somewhere, not the most conclusive test
     endpoints = JSON.parse(response)
     expect(endpoints.any? { |ep| ep['Data'] == data1 }).to be true
     expect(endpoints.any? { |ep| ep['Data'] == data2 }).to be true
@@ -84,8 +89,8 @@ RSpec.describe 'restjester' do
 
   it "can clear all endpoints" do
 
-    resource1 = '/myresource/' + SecureRandom.uuid
-    resource2 = '/myresource/' + SecureRandom.uuid
+    resource1 = random_path
+    resource2 = random_path
     data1 = {a:5, b:6}.to_json
     data2 = {c:7, d:8}.to_json
 
@@ -103,7 +108,7 @@ RSpec.describe 'restjester' do
     expect(response.code).to eql 200
 
     # how else can we test clear other than rely on GET all working correctly??
-    response = get_helper()
+    response = RestClient.get HOST
     endpoints = JSON.parse(response)
     expect(JSON.parse(response)).to eql []
 
@@ -118,28 +123,30 @@ RSpec.describe 'restjester' do
 
   it "endpoint overwrites previous endpoint" do
 
-    response = RestClient.post host, { path: path, data: data1 }
-    expect(response.code).to eql 200
+    resource = random_path
+    data1 = {a:1, b:2}.to_json
+    data2 = {a:3, b:4}.to_json
+
+    endpoint_installer(path:resource, data:data1)
+
+    expect(get_helper(resource)).to eql data1
 
     # overwrite
-    response = RestClient.post host, { path: path, data: data2 }
-    expect(response.code).to eql 200
+    endpoint_installer(path:resource, data:data2)
 
-    # GET endpoint
-    response = RestClient.get host + path
-    expect(response.code).to eql 200
-    expect(response).to eql data2
+    expect(get_helper(resource)).to eql data2
 
   end
 
 
   it "can install and return 404" do
 
-    response = RestClient.post host, { path: path, status: 404 }
-    expect(response.code).to eql 200
+    path = random_path
+
+    endpoint_installer(path:path, status:404)
 
     expect {
-      RestClient.get host + path
+      get_helper(path)
     }.to raise_exception RestClient::NotFound
 
   end

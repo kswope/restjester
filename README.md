@@ -12,6 +12,7 @@
 * Same solution for all languages.
 * Because you have to use an external API if you are testing in a browser.
 * Can run as system service or command line.
+* Cheap backend for SPA development
 
 
 ### Install
@@ -20,13 +21,13 @@ Download the server compiled for your architecture
 
 [Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 |
-[OSX](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[OSX]    (https://github.com/kswope/restjester/blob/sync/releases/darwin/amd64/restjester?raw=true)
 |
-[Linux](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[Linux]  (https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
 |
-[ARM](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
 |
-[ARM64](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+[ARM64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
 
 
 
@@ -52,18 +53,18 @@ Install [golang](https://golang.org/), download this repo, run 'make', the binar
 it "can install and GET resource" do
 
   # install resource on restjester
-  RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
+  RestClient.post 'localhost:5351', { path:'/users/1', data: {user: 'kswope'}.to_json }
 
   # GET resource
   response = RestClient.get 'localhost:5351/users/1' 
-  expect( JSON.parse( response.body ) ).to eql( { 'username'=>'kswope' } )
+  expect( JSON.parse( response.body ) ).to eql( { 'user'=>'kswope' } )
 
 end
 ```
 
 ### Installing endpoint ruby examples
 ```
-RestClient.post 'localhost:5351', { method:'GET'     path:'/users/1', data: {username: 'kswope'}.to_json }
+RestClient.post 'localhost:5351', { method:'GET'     path:'/users/1', data: {user: 'kswope'}.to_json }
 RestClient.post 'localhost:5351', { method:'PUT',    path:'/users/1', status:200 }
 RestClient.post 'localhost:5351', { method:'POST',   path:'/users/1', status:200 }
 RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }

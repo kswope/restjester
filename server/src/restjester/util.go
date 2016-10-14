@@ -5,6 +5,7 @@ import "bytes"
 
 // import "encoding/json"
 import "net/http"
+import "net/url"
 
 // func prettyPrintJSON(str string) {
 // 	byt := []byte(str)
@@ -16,11 +17,13 @@ import "net/http"
 
 func formatEndpoint(ep endpoint) string {
 
-	// make request just to format URL for output
+	// use http.NewRequest to build up a unused request that we just use to spit
+	// out a url string
 	var request, _ = http.NewRequest(ep.Method, "", bytes.NewBufferString(""))
 	request.URL.Host = fmt.Sprintf("%s:%d", "localhost", gPort)
 	request.URL.Scheme = "http"
 	request.URL.Path = ep.Path
+	request.URL.RawQuery = url.Values.Encode(ep.Query)
 
 	str := ""
 	str = str + request.Method
