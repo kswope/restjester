@@ -2,9 +2,9 @@
 
 <img height="250" src="https://github.com/kswope/restjester/blob/master/assets/jester.png" />
 
-# restjester BETA
+## restjester BETA
 
-## REST API mocking server
+### REST API mocking server
 
 
 * You don't like mocking API REST calls, you want the real thing, sorta.
