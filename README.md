@@ -19,8 +19,6 @@
 
 Download the server compiled for your architecture
 
-[Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
-|
 [OSX]    (https://github.com/kswope/restjester/blob/sync/releases/darwin/amd64/restjester?raw=true)
 |
 [Linux 386]  (https://github.com/kswope/restjester/blob/sync/releases/linux/386/restjester?raw=true)
@@ -30,6 +28,8 @@ Download the server compiled for your architecture
 [Linux ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
 |
 [Linux ARM64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
+|
+[Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 
 
 
@@ -73,16 +73,11 @@ end
     * status ( optional, default is 200 )
     * data ( optional, string (probably json), body of response, default is "" )
 
-* Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
+* Accessing endpoint with GET, POST, PUT, DELETE, etc returns the corresponding installed endpoint
 
 * GET / returns all endpoints
 
 * DELETE / clears all endpoints
-
-
-
-
-
 
 
 ### Installing endpoint ruby examples
