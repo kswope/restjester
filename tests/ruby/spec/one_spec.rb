@@ -30,6 +30,7 @@ end
 
 RSpec.describe 'restjester' do
 
+
   it "can install a GET endpoint and GET it" do
 
     resource = random_path
@@ -123,7 +124,7 @@ RSpec.describe 'restjester' do
     endpoints = JSON.parse(response)
     expect(JSON.parse(response)).to eql []
 
-    # lets just check for data1 just in case dump isn't working, it wont be conclusive however
+    # lets just check for resources just in case dump isn't working, it wont be conclusive either
     expect {
       get_helper(resource1)
       get_helper(resource2)
@@ -150,7 +151,7 @@ RSpec.describe 'restjester' do
   end
 
 
-  it "endpoint overwrites previous endpoint with query params" do
+  it "endpoint overwrites previous endpoint ( with query params )" do
 
     resource = random_path + '?y=1&z=2'
     data1 = {a:1, b:2}.to_json
@@ -189,24 +190,6 @@ RSpec.describe 'restjester' do
     # GET resource
     response = RestClient.get 'localhost:5351/users/1' 
     expect( JSON.parse( response.body ) ).to eql( { 'username'=>'kswope' } )
-
-  end
-
-
-  specify "doc example works" do
-
-    RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
-    response = RestClient.get 'localhost:5351/users/1' 
-    expect( JSON.parse( response.body ) ).to eql( { 'username'=>'kswope' } )
-
-    RestClient.post 'localhost:5351', { method:'PUT', path:'/users/1' }
-    response = RestClient.get 'localhost:5351/users/1' 
-    expect( response.code ).to eql 200
-
-    RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
-    expect {
-      response = RestClient.delete 'localhost:5351/users/1'
-    }.to raise_exception RestClient::Forbidden
 
   end
 
