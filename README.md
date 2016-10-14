@@ -68,6 +68,8 @@ end
 
 #### POST values to / installs endpoints
 
+#### Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
+
 * path ( required )
 * method ( optional, default is GET )
 * status ( optional, default is 200 )
@@ -77,7 +79,6 @@ end
 
 #### DELETE / clears all endpoints
 
-#### Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
 
 
 
