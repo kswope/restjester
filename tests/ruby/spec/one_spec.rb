@@ -43,7 +43,18 @@ RSpec.describe 'restjester' do
 
   it "can install a GET endpoint with query params and GET it" do
 
-    resource = random_path + '?a=1&c=2'
+    resource = random_path + '?a=1&b=2'
+    data = {y:1, z:2}.to_json
+
+    endpoint_installer(path:resource, data:data)
+    expect(get_helper(resource)).to eql data
+
+  end
+
+
+  it "can install a GET endpoint with query params and GET it even with different order" do
+
+    resource = random_path + '?b=2&a=1'
     data = {y:1, z:2}.to_json
 
     endpoint_installer(path:resource, data:data)
@@ -139,6 +150,24 @@ RSpec.describe 'restjester' do
   end
 
 
+  it "endpoint overwrites previous endpoint with query params" do
+
+    resource = random_path + '?y=1&z=2'
+    data1 = {a:1, b:2}.to_json
+    data2 = {a:3, b:4}.to_json
+
+    endpoint_installer(path:resource, data:data1)
+
+    expect(get_helper(resource)).to eql data1
+
+    # overwrite
+    endpoint_installer(path:resource, data:data2)
+
+    expect(get_helper(resource)).to eql data2
+
+  end
+
+
   it "can install and return 404" do
 
     path = random_path
@@ -155,7 +184,7 @@ RSpec.describe 'restjester' do
   specify "README example works" do
 
     # install resource on restjester
-    RestClient.post 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
+    RestClient.post 'localhost:5351', { path:'/users/1', data: {'username' => 'kswope'}.to_json }
 
     # GET resource
     response = RestClient.get 'localhost:5351/users/1' 

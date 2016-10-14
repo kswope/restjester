@@ -55,14 +55,22 @@ Install [golang](https://golang.org/), download this repo, run 'make', the binar
 it "can install and GET resource" do
 
   # install resource on restjester
-  RestClient.post 'localhost:5351', { path:'/users/1', data: {user: 'kswope'}.to_json }
+  RestClient.post 'localhost:5351', { path:'/users/1', data: {'username' => 'kswope'}.to_json }
 
   # GET resource
   response = RestClient.get 'localhost:5351/users/1' 
-  expect( JSON.parse( response.body ) ).to eql( { 'user'=>'kswope' } )
+  expect( JSON.parse( response.body ) ).to eql( { 'username'=>'kswope' } )
 
 end
 ```
+
+### Functionality
+#### Posting to / installings endpoints
+#### GET / returns all endpoints
+#### DELETE / clears all endpoints
+
+
+
 
 ### Installing endpoint ruby examples
 ```
