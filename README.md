@@ -65,14 +65,20 @@ end
 ```
 
 ### Functionality
+
 #### Posting to / installings endpoints
+
 ##### Install endpoint parameters
+
 * path ( required )
 * method ( optional, default is GET )
 * status ( optional, default is 200 )
 * data ( optional, string (probably json), body of response, default is "" )
+
 #### GET / returns all endpoints
+
 #### DELETE / clears all endpoints
+
 
 
 
