@@ -25,9 +25,9 @@ Download the server compiled for your architecture
 |
 [Linux]  (https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
 |
-[ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
+[Linux ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
 |
-[ARM64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
+[Linux ARM64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
 
 
 
