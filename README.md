@@ -66,6 +66,11 @@ end
 
 ### Functionality
 #### Posting to / installings endpoints
+##### Install endpoint parameters
+* path ( required )
+* method ( optional, default is GET )
+* status ( optional, default is 200 )
+* data ( optional, string (probably json), body of response, default is "" )
 #### GET / returns all endpoints
 #### DELETE / clears all endpoints
 
@@ -80,11 +85,7 @@ RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403
 RestClient.post 'localhost:5351', { method:'POST',   path:'/users',   status:200 }
 ```
 
-### Install endpoint parameters
-* path ( required )
-* method ( optional, default is GET )
-* status ( optional, default is 200 )
-* data ( optional, string (probably json), body of response, default is "" )
+
 
 
 ### GET all endpoints ruby example
