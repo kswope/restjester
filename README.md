@@ -49,7 +49,7 @@ shell> deamon --name restjester ./restjester
 Install [golang](https://golang.org/), download this repo, run 'make', the binary will be in server/bin/
 
 
-### ruby example using rest-client and rspec
+### Example in ruby using rest-client and rspec
 
 ```
 it "can install and GET resource" do
