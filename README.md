@@ -66,18 +66,18 @@ end
 
 ### Functionality
 
-#### POST values to / to install endpoints
+* POST values to / to install endpoints
 
-** path ( required )
-** method ( optional, default is GET )
-** status ( optional, default is 200 )
-** data ( optional, string (probably json), body of response, default is "" )
+    * path ( required )
+    * method ( optional, default is GET )
+    * status ( optional, default is 200 )
+    * data ( optional, string (probably json), body of response, default is "" )
 
-#### Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
+* Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
 
-#### GET / returns all endpoints
+* GET / returns all endpoints
 
-#### DELETE / clears all endpoints
+* DELETE / clears all endpoints
 
 
 
