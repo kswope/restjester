@@ -44,9 +44,31 @@ Run as a daemon (requires deamon)
 shell> deamon --name restjester ./restjester
 ```
 
+
+
 ### If you want/need to compile your own binary 
 
 Install [golang](https://golang.org/), download this repo, run 'make', the binary will be in server/bin/
+
+
+
+
+### Complete Functionality
+
+* POST values to / to install endpoints
+
+    * path ( required )
+    * method ( optional, default is GET )
+    * status ( optional, default is 200 )
+    * data ( optional, string (probably json), body of response, default is "" )
+
+* Accessing endpoint with GET, POST, PUT, DELETE, etc returns the corresponding installed endpoint
+
+* GET / returns all endpoints
+
+* DELETE / clears all endpoints
+
+
 
 
 ### Example in ruby using rest-client and rspec
@@ -63,21 +85,6 @@ it "can install and GET resource" do
 
 end
 ```
-
-### Complete Functionality
-
-* POST values to / to install endpoints
-
-    * path ( required )
-    * method ( optional, default is GET )
-    * status ( optional, default is 200 )
-    * data ( optional, string (probably json), body of response, default is "" )
-
-* Accessing endpoint with GET, POST, PUT, DELETE, etc returns the corresponding installed endpoint
-
-* GET / returns all endpoints
-
-* DELETE / clears all endpoints
 
 
 ### Installing endpoint ruby examples
