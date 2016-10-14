@@ -66,7 +66,7 @@ end
 
 ### Functionality
 
-#### Posting to / installs endpoints
+#### POSTING values to / installs endpoints
 
 * path ( required )
 * method ( optional, default is GET )
