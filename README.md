@@ -23,7 +23,9 @@ Download the server compiled for your architecture
 |
 [OSX]    (https://github.com/kswope/restjester/blob/sync/releases/darwin/amd64/restjester?raw=true)
 |
-[Linux]  (https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
+[Linux 386]  (https://github.com/kswope/restjester/blob/sync/releases/linux/386/restjester?raw=true)
+|
+[Linux x86-64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
 |
 [Linux ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
 |
