@@ -40,6 +40,10 @@ xcompile:
 	mkdir -p releases/linux/amd64
 	GOPATH=${GOPATH} GOOS=linux GOARCH=amd64 go build -o releases/linux/amd64/restjester ${GOPACKAGE}  
 
+	# linux 64
+	mkdir -p releases/linux/386
+	GOPATH=${GOPATH} GOOS=linux GOARCH=386 go build -o releases/linux/386/restjester ${GOPACKAGE}  
+
 	# linux arm ( chromeboook )
 	mkdir -p releases/linux/arm
 	GOPATH=${GOPATH} GOOS=linux GOARCH=arm go build -o releases/linux/arm/restjester ${GOPACKAGE}  
