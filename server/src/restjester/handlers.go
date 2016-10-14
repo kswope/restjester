@@ -4,22 +4,20 @@ import "fmt"
 import "net/http"
 import "encoding/json"
 
-func handlePut(w http.ResponseWriter, req *http.Request) {
+func handleRootPut(w http.ResponseWriter, req *http.Request) {
 	errMsg := "PUT / not implemented yet\n"
 	w.WriteHeader(http.StatusNotFound)
 	fmt.Fprintln(w, errMsg)
 	fmt.Printf(errMsg)
 }
 
-func handleDump(w http.ResponseWriter, req *http.Request) {
+func handleRootGet(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("dumping endpoints")
 	dumped, _ := json.Marshal(endpoints)
 	w.Write([]byte(dumped))
 }
 
-func handleRoot(w http.ResponseWriter, req *http.Request) {
-
-	fmt.Fprintln(w, "restjester")
+func handleRootPost(w http.ResponseWriter, req *http.Request) {
 
 	req.ParseForm()
 
@@ -39,17 +37,16 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 
 	endpoints = endpointPut(endpoints, endpoint)
 
-	fmt.Println(extractDataFromRequest(req))
 	fmt.Printf("endpoint ADD %s\n", formatEndpoint(endpoint))
 
 }
 
-func handleClear(w http.ResponseWriter, req *http.Request) {
+func handleRootDelete(w http.ResponseWriter, req *http.Request) {
 
 	fmt.Fprintln(w, "clearing endpoints")
 	endpoints = nil // correct way to clear array for GC
 	// nilling array leaves null, which looks unsightly on dump in browser
-	endpoints = createEndpoints()
+	endpoints = createEndpoints() // create empty endpoints
 
 }
 

@@ -2,34 +2,84 @@
 
 <img height="250" src="https://github.com/kswope/restjester/blob/master/assets/jester.png" />
 
-# restjester BETA
+## restjester BETA
 
-## REST API mocking server
-
+### REST API mocking server
 
 * You don't like mocking API REST calls, you want the real thing, sorta.
+* Cheap backend for SPA development
 * Single golang binary to just download and run, no installation.
 * Same solution for all languages.
-* Because you have to use an external API if you are testing in a browser.
-* Can run as system service or command line.
-* Easy to setup API backend for frontend development - load up restjester with data and go to work.
+* Because you have to use an external API if your tests are driving a browser.
+* Can run as command line or system service.
 
 
-[binary](https://github.com/kswope/restjester/blob/master/server/bin/restjester?raw=true)
+### Install
+
+Download the server compiled for your architecture
+
+[OSX]    (https://github.com/kswope/restjester/blob/sync/releases/darwin/amd64/restjester?raw=true)
+|
+[Linux 386]  (https://github.com/kswope/restjester/blob/sync/releases/linux/386/restjester?raw=true)
+|
+[Linux x86-64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
+|
+[Linux ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
+|
+[Linux ARM64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
+|
+[Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
 
 
-### ruby example using rest-client and rspec
+#### If you want/need to compile your own binary 
 
+Install [golang](https://golang.org/), download this repo, run 'make', the binary will be in server/bin/
+
+
+
+### Run
+
+With output to terminal
 ```
 shell> ./restjester
 Starting server at port 5351
 ```
 
+As a daemon (requires deamon)
+```
+shell> deamon --name restjester ./restjester
+```
+
+
+
+
+
+
+### Complete Functionality
+
+* POST values to / to install endpoints
+
+    * path ( required )
+    * method ( optional, default is GET )
+    * status ( optional, default is 200 )
+    * data ( optional, string (probably json), body of response, default is "" )
+
+* Accessing endpoint with GET, POST, PUT, DELETE, etc returns the corresponding installed endpoint
+
+* GET / returns all endpoints
+
+* DELETE / clears all endpoints
+
+
+
+
+### Example in ruby using rest-client and rspec
+
 ```
 it "can install and GET resource" do
 
   # install resource on restjester
-  RestClient.put 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
+  RestClient.post 'localhost:5351', { path:'/users/1', data: {'username' => 'kswope'}.to_json }
 
   # GET resource
   response = RestClient.get 'localhost:5351/users/1' 
@@ -38,23 +88,44 @@ it "can install and GET resource" do
 end
 ```
 
-Get root will view all endpoints
-Delete root will clear all endpoints
 
 ### Installing endpoint ruby examples
 ```
-RestClient.put 'localhost:5351', { path:'/users/1', data: {username: 'kswope'}.to_json }
-RestClient.put 'localhost:5351', { method:'PUT', path:'/users/1', data: {username: 'kswope'}.to_json }
-RestClient.put 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
+RestClient.post 'localhost:5351', { method:'GET'     path:'/users/1', data: {user: 'kswope'}.to_json }
+RestClient.post 'localhost:5351', { method:'PUT',    path:'/users/1', status:200 }
+RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
+RestClient.post 'localhost:5351', { method:'POST',   path:'/users',   status:200 }
 ```
 
 
-### Install endpoint parameters
-* path ( required )
-* method ( optional, default is GET )
-* status ( optional, default is 200 )
-* data ( optional, body of response )
 
+
+### GET all endpoints ruby example
+```
+RestClient.get 'localhost:5351'
+```
+
+### Query string parameter order doesn't matter
+```
+RestClient.post 'localhost:5351', { method:'GET' path:'/users/1?a=1&b=2', data: {}.to_json }
+
+response = RestClient.get 'localhost:5351/users/1?a=1&b=2' 
+
+# same as
+response = RestClient.get 'localhost:5351/users/1?b=2&a=1' 
+```
+
+
+### Viewing all endpoints in browser
+
+Just to go [localhost:5351](http://localhost:5351)
+
+Tip: install a JSON viewer plugin like [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
+
+### Clearing all installed endpoints ruby example
+```
+RestClient.delete 'localhost:5351'
+```
 
 ### javascript example
 ```
@@ -63,23 +134,6 @@ TODO
 
 ### perl example
 ```
-TODO
+TODO LATER
 ```
-
-### INSTALL:
-
-restjester is currently distributed as a single compile golang binary.  No external dependancies.
-
-Find the server compiled for your architecture and put on your path, like /usr/sbin
-Not sure of platform?  
-> uname --hardware-platform
-
-Run with output to terminal
-> ./restjester
-
-Run as a daemon (requires deamon)
-> deamon --name restjester /usr/sbin/restjester
-
-Run on system startup, copy init script to appropriate place
-
 

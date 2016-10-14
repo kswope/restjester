@@ -12,13 +12,13 @@ func handler(w http.ResponseWriter, req *http.Request) {
 
 		// endpoint creation request
 		if req.Method == "POST" {
-			handleRoot(w, req)
+			handleRootPost(w, req)
 		} else if req.Method == "DELETE" {
-			handleClear(w, req)
+			handleRootDelete(w, req)
 		} else if req.Method == "GET" {
-			handleDump(w, req)
+			handleRootGet(w, req)
 		} else if req.Method == "PUT" {
-			handlePut(w, req)
+			handleRootPut(w, req)
 		}
 
 	} else {
