@@ -77,6 +77,9 @@ end
 
 #### DELETE / clears all endpoints
 
+#### Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
+
+
 
 
 
