@@ -6,13 +6,12 @@
 
 ### REST API mocking server
 
-
 * You don't like mocking API REST calls, you want the real thing, sorta.
+* Cheap backend for SPA development
 * Single golang binary to just download and run, no installation.
 * Same solution for all languages.
-* Because you have to use an external API if you are testing in a browser.
-* Can run as system service or command line.
-* Cheap backend for SPA development
+* Because you have to use an external API if your tests are driving a browser.
+* Can run as command line or system service.
 
 
 ### Install
