@@ -68,8 +68,8 @@ end
 ```
 RestClient.post 'localhost:5351', { method:'GET'     path:'/users/1', data: {user: 'kswope'}.to_json }
 RestClient.post 'localhost:5351', { method:'PUT',    path:'/users/1', status:200 }
-RestClient.post 'localhost:5351', { method:'POST',   path:'/users/1', status:200 }
 RestClient.post 'localhost:5351', { method:'DELETE', path:'/users/1', status:403 }
+RestClient.post 'localhost:5351', { method:'POST',   path:'/users',   status:200 }
 ```
 
 ### Install endpoint parameters
