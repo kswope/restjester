@@ -78,7 +78,7 @@ shell> deamon --name restjester ./restjester
 ```
 it "can install and GET resource" do
 
-  # install resource on restjester
+  # install resource on restjester (GET is the default)
   RestClient.post 'localhost:5351', { path:'/users/1', data: {'username' => 'kswope'}.to_json }
 
   # GET resource
@@ -116,6 +116,17 @@ response = RestClient.get 'localhost:5351/users/1?b=2&a=1'
 ```
 
 
+### javascript examples
+```
+TODO
+```
+
+### perl examples
+```
+TODO LATER
+```
+
+
 ### Viewing all endpoints in browser
 
 Just to go [localhost:5351](http://localhost:5351)
@@ -125,15 +136,5 @@ Tip: install a JSON viewer plugin like [JSONView](https://chrome.google.com/webs
 ### Clearing all installed endpoints ruby example
 ```
 RestClient.delete 'localhost:5351'
-```
-
-### javascript example
-```
-TODO
-```
-
-### perl example
-```
-TODO LATER
 ```
 
