@@ -66,7 +66,7 @@ end
 
 ### Functionality
 
-#### POST values to / installs endpoints
+#### POST values to / to install endpoints
 
 #### Accessing endpoint with GET, POST, PUT, DELETE, ETC returns the corresponding installed endpoint
 
