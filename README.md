@@ -18,17 +18,17 @@
 
 Download the server compiled for your architecture
 
-[OSX]    (https://github.com/kswope/restjester/blob/sync/releases/darwin/amd64/restjester?raw=true)
+[OSX](https://github.com/kswope/restjester/blob/sync/releases/darwin/amd64/restjester?raw=true)
 |
-[Linux 386]  (https://github.com/kswope/restjester/blob/sync/releases/linux/386/restjester?raw=true)
+[Linux 386](https://github.com/kswope/restjester/blob/sync/releases/linux/386/restjester?raw=true)
 |
-[Linux x86-64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
+[Linux x86-64](https://github.com/kswope/restjester/blob/sync/releases/linux/amd64/restjester?raw=true)
 |
-[Linux ARM]    (https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
+[Linux ARM](https://github.com/kswope/restjester/blob/sync/releases/linux/arm/restjester?raw=true)
 |
-[Linux ARM64]  (https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
+[Linux ARM64](https://github.com/kswope/restjester/blob/sync/releases/linux/arm64/restjester?raw=true)
 |
-[Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester?raw=true)
+[Windows](https://github.com/kswope/restjester/blob/sync/releases/windows/amd64/restjester.exe?raw=true)
 
 
 #### If you want/need to compile your own binary 
@@ -50,9 +50,19 @@ As a daemon (requires deamon)
 shell> deamon --name restjester ./restjester
 ```
 
+#### For proxying and cache of application
+To forward requests when there is no registered endpoint and then cache the response
 
+With output to terminal
+```
+shell> ./restjester -f https://apihost:80
+Starting server at port 5351
+```
 
-
+As a daemon (requires deamon)
+```
+shell> deamon --name restjester ./restjester -f https://apihost:80
+```
 
 
 ### Complete Functionality
@@ -69,7 +79,6 @@ shell> deamon --name restjester ./restjester
 * GET / returns all endpoints
 
 * DELETE / clears all endpoints
-
 
 
 

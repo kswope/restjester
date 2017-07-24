@@ -30,11 +30,11 @@ func extractMethodFromRequest(req *http.Request) string {
 	}
 }
 
-func extractDataFromRequest(req *http.Request) string {
+func extractDataFromRequest(req *http.Request) []byte {
 	if len(req.Form["data"]) > 0 {
-		return req.Form["data"][0]
+		return []byte(req.Form["data"][0])
 	} else {
-		return "" // default
+		return []byte("") // default
 	}
 }
 

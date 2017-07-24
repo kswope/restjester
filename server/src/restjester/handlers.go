@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
-import "net/http"
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
 
 func handleRootPut(w http.ResponseWriter, req *http.Request) {
 	errMsg := "PUT / not implemented yet\n"
@@ -14,6 +17,7 @@ func handleRootPut(w http.ResponseWriter, req *http.Request) {
 func handleRootGet(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("dumping endpoints")
 	dumped, _ := json.Marshal(endpoints)
+	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(dumped))
 }
 
@@ -27,6 +31,7 @@ func handleRootPost(w http.ResponseWriter, req *http.Request) {
 		extractMethodFromRequest(req),
 		extractStatusFromRequest(req),
 		extractDataFromRequest(req),
+		defaultHeader,
 	)
 
 	if endpoint.Path == "" {
@@ -53,17 +58,58 @@ func handleRootDelete(w http.ResponseWriter, req *http.Request) {
 func handlerEndpoint(w http.ResponseWriter, req *http.Request) {
 
 	// create a 'close enough' endpoint to search with
-	var endpointApprox = createEndpoint(req.URL.Path, req.URL.Query(), req.Method, 200, "")
+	var endpointApprox = createEndpoint(req.URL.Path, req.URL.Query(), req.Method, 200, []byte{}, defaultHeader)
 
 	if endpoint, found := endpointGet(endpoints, endpointApprox); found {
-		fmt.Printf("endpoint HIT %s\n", formatEndpoint(endpoint))
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(endpoint.Status)
-		w.Write([]byte(endpoint.Data))
+		doResponse(w, endpoint)
 	} else {
-		fmt.Printf("endpoint MISS, %s\n", formatEndpoint(endpointApprox))
-		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprintln(w, "404 endpoint not found")
+
+		if len(proxyURL) > 0 {
+			urlEndPoint := fmt.Sprintf("%s%s", proxyURL, req.URL)
+			fmt.Printf("Proxying url, %s\n", urlEndPoint)
+			proxyRequest, err := http.NewRequest(endpointApprox.Method, urlEndPoint, req.Body)
+			if err != nil {
+				errorHandle(w, err)
+				return
+			}
+			proxyRequest.Header = req.Header
+
+			proxyResponse, err := httpClient.Do(proxyRequest)
+			if err != nil {
+				errorHandle(w, err)
+				return
+			}
+			proxyResponseData, err := ioutil.ReadAll(proxyResponse.Body)
+			if err != nil {
+				errorHandle(w, err)
+				return
+			}
+			endpointApprox.Data = proxyResponseData
+			endpointApprox.Header = proxyResponse.Header
+			fmt.Println(endpointApprox.Header)
+			endpoints = endpointPut(endpoints, endpointApprox)
+
+			doResponse(w, endpointApprox)
+		} else {
+			fmt.Printf("endpoint MISS, %s\n", formatEndpoint(endpointApprox))
+			w.WriteHeader(http.StatusNotFound)
+			fmt.Fprintln(w, "404 endpoint not found")
+		}
 	}
 
+}
+
+func errorHandle(w http.ResponseWriter, err error) {
+	fmt.Printf("proxy MISS, %s\n", err)
+	w.WriteHeader(http.StatusInternalServerError)
+	fmt.Fprintln(w, "500 Internal Server Error")
+}
+
+func doResponse(w http.ResponseWriter, endpoint endpoint) {
+	fmt.Printf("endpoint HIT %s\n", formatEndpoint(endpoint))
+	for k, v := range endpoint.Header {
+		w.Header().Set(k, v[0])
+	}
+	w.WriteHeader(endpoint.Status)
+	w.Write(endpoint.Data)
 }

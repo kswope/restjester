@@ -1,14 +1,17 @@
 package main
 
-// import "fmt"
-import "reflect"
+import (
+	"net/http"
+	"reflect"
+)
 
 type endpoint struct {
 	Path   string              // /a/b/c
 	Query  map[string][]string // ?a=b&c=d
 	Method string              // POST, GET
 	Status int                 //
-	Data   string              // endpoint data
+	Data   []byte              // endpoint data
+	Header http.Header         // header to response
 }
 
 //-----------------------------------------------------------------------------
@@ -24,7 +27,8 @@ func createEndpoint(
 	query map[string][]string,
 	method string,
 	status int,
-	data string,
+	data []byte,
+	header http.Header,
 ) endpoint {
 	return endpoint{
 		Path:   path,
@@ -32,6 +36,7 @@ func createEndpoint(
 		Method: method,
 		Status: status,
 		Data:   data,
+		Header: header,
 	}
 }
 

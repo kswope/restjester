@@ -71,7 +71,7 @@ func TestExtractData(t *testing.T) {
 
 	expected := "the payload"
 
-	if data != expected {
+	if string(data) != expected {
 		t.Errorf("expected '%s', got '%s' from request %q", expected, data, request)
 	}
 
