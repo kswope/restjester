@@ -50,8 +50,8 @@ As a daemon (requires deamon)
 shell> deamon --name restjester ./restjester
 ```
 
-#### For proxying and cache of application
-To forward requests when there is no registered endpoint and then cache the response
+#### For proxying and cache of API
+To forward requests when there is no previously registered endpoint and then cache the response
 
 With output to terminal
 ```
